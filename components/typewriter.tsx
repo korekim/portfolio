@@ -1,52 +1,125 @@
+// components/Typewriter.tsx
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 type Props = {
-  text: string;
+  children: React.ReactNode | React.ReactNode[];
   speed?: number;
   startDelay?: number;
   className?: string;
+  cursor?: boolean;
+  rerunKey?: any;
 };
 
 export default function Typewriter({
-  text,
-  speed = 30,
-  startDelay = 200,
+  children,
+  speed = 25,
+  startDelay = 150,
   className = "",
+  cursor = true,
+  rerunKey,
 }: Props) {
-  const [out, setOut] = useState("");
+  const nodes = useMemo(() => React.Children.toArray(children), [children]);
+
+  const [idx, setIdx] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const [started, setStarted] = useState(false); // NEW
   const [done, setDone] = useState(false);
-  const i = useRef(0);
+
+  const tickTimer = useRef<number | null>(null);
+  const startTimer = useRef<number | null>(null);
 
   const prefersReduced =
     typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
+  // Reset state on change
   useEffect(() => {
-    setOut(""); setDone(false); i.current = 0;  // reset on text change
-    if (prefersReduced) { setOut(text); setDone(true); return; }
+    setIdx(0);
+    setCharCount(0);
+    setDone(false);
+    setStarted(false); // reset
+    if (tickTimer.current) window.clearTimeout(tickTimer.current);
+    if (startTimer.current) window.clearTimeout(startTimer.current);
+  }, [rerunKey, nodes]);
 
-    let tickTimer: number | undefined;
-    const start = window.setTimeout(() => {
-      const tick = () => {
-        i.current++;
-        setOut(text.slice(0, i.current));
-        if (i.current < text.length) {
-          tickTimer = window.setTimeout(tick, speed);
-        } else {
-          setDone(true);
-        }
+  useEffect(() => {
+    if (prefersReduced) {
+      setDone(true);
+      setStarted(false);
+      return;
+    }
+    if (done) return;
+
+    // Start delay only once at the beginning
+    if (!started && idx === 0 && charCount === 0) {
+      startTimer.current = window.setTimeout(() => {
+        setStarted(true); // cursor can show now
+        // kick off first tick cycle
+        setCharCount((c) => c);
+      }, startDelay) as unknown as number;
+      return () => {
+        if (startTimer.current) window.clearTimeout(startTimer.current);
       };
-      tick();
-    }, startDelay);
+    }
 
-    return () => { clearTimeout(start); if (tickTimer) clearTimeout(tickTimer); };
-  }, [text, speed, startDelay, prefersReduced]);
+    if (idx >= nodes.length) {
+      setDone(true);
+      return;
+    }
+
+    const current = nodes[idx];
+
+    if (typeof current === "string") {
+      if (charCount < current.length) {
+        tickTimer.current = window.setTimeout(() => {
+          setCharCount((c) => c + 1);
+        }, speed) as unknown as number;
+      } else {
+        setIdx((i) => i + 1);
+        setCharCount(0);
+      }
+      return () => {
+        if (tickTimer.current) window.clearTimeout(tickTimer.current);
+      };
+    }
+
+    // Non-string element: reveal atomically then advance
+    tickTimer.current = window.setTimeout(() => {
+      setIdx((i) => i + 1);
+      setCharCount(0);
+    }, speed) as unknown as number;
+
+    return () => {
+      if (tickTimer.current) window.clearTimeout(tickTimer.current);
+    };
+  }, [idx, charCount, nodes, speed, startDelay, done, started, prefersReduced]);
+
+  // Build output
+  const rendered = [];
+  for (let i = 0; i < idx; i++) {
+    rendered.push(<React.Fragment key={`full-${i}`}>{nodes[i]}</React.Fragment>);
+  }
+  if (!prefersReduced && !done && idx < nodes.length) {
+    const current = nodes[idx];
+    if (typeof current === "string") {
+      rendered.push(
+        <span key={`partial-${idx}`}>{current.slice(0, charCount)}</span>
+      );
+    }
+  } else if (prefersReduced) {
+    // render everything at once
+    for (let i = 0; i < nodes.length; i++) {
+      rendered.push(<React.Fragment key={`rm-${i}`}>{nodes[i]}</React.Fragment>);
+    }
+  }
 
   return (
-    <span className={`font-mono ${className}`}>
-      {out}
-      {!done && !prefersReduced && (
+    <span className={className}>
+      {rendered}
+      {/* Cursor shows only after delay has finished AND while not done */}
+      {started && !done && !prefersReduced && cursor && (
         <span className="inline-block w-[2px] h-[1em] bg-current align-baseline animate-pulse" />
       )}
     </span>
