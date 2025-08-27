@@ -8,10 +8,11 @@ const projects = [
     },
     {
         title: "Github Portfolio",
-        url: "https://github.com/korekim/korekim.github.io",
+        url: "https://github.com/korekim/portfolio",
         items: [
-            "Next.js integration coming soon",
-            "Potential switch to cloud hosting with containerized deployment",
+            "Next.js integration is here!",
+            "Now deployed on Vercel",
+            "Coming Soon: Cloud migration with Docker containers + Kubernetes orchestration",
         ],
     },
 ];
