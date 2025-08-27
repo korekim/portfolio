@@ -5,17 +5,22 @@ import React from "react";
 
 const Page = () => (
   <main>
-    <h2><Typewriter children={["Welcome to my portfolio!"]} speed={20} /></h2>
+    <h2><Typewriter speed={20}>
+      {"Welcome to my portfolio!"}
+    </Typewriter></h2>
     <div className="bio">
       <p>
         <Typewriter 
-          children={["I am a passionate cybersecurity student focused on developing skills in network security, penetration testing, and security analysis. Currently pursuing my degree in Cybersecurity, I am dedicated to understanding and defending against evolving digital threats."]} 
           startDelay={1000}
           speed={1}
-          />
+        >
+          {"I am a passionate cybersecurity student focused on developing skills in network security, penetration testing, and security analysis. Currently pursuing my degree in Cybersecurity, I am dedicated to understanding and defending against evolving digital threats."}
+        </Typewriter>
       </p>
 
-      <h3><Typewriter children={["> Skills"]} startDelay={3000} speed={20}/></h3>
+      <h3><Typewriter startDelay={3000} speed={20}>
+        {"> Skills"}
+      </Typewriter></h3>
       <ul>
         <TerminalLog speed={200} startDelay={3500} lines={[
           <li>Network Security</li>,
@@ -28,10 +33,12 @@ const Page = () => (
       </ul>
 
       <h3>
-        <Typewriter children={["> Certifications"]} startDelay={6000} speed={20} />
+        <Typewriter startDelay={5000} speed={20}>
+          {"> Certifications"}
+        </Typewriter>
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={6500} lines={[
+        <TerminalLog speed={200} startDelay={5500} lines={[
           <li>CompTIA Security+</li>,
           <li>Associate of ISC2, SSCP Certified</li>,
           <li>CompTIA Network+</li>,
@@ -41,10 +48,12 @@ const Page = () => (
       </ul>
 
       <h3>
-        <Typewriter children={["> Resume:"]} startDelay={8000} speed={20} />
+        <Typewriter startDelay={7000} speed={20}>
+          {"> Resume:"}
+        </Typewriter>
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={8500} lines={[
+        <TerminalLog speed={200} startDelay={7500} lines={[
           <li>
         <a href="./public/JakeResume.pdf" className="download-btn">
           Download Resume (PDF)
