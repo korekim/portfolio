@@ -22,14 +22,14 @@ const Page = () => (
         {"> Skills"}
       </Typewriter></h3>
       <ul>
-        <TerminalLog speed={200} startDelay={3500} lines={[
+        <TerminalLog speed={200} startDelay={3500} lines={React.Children.toArray([
           <li>Network Security</li>,
           <li>Linux Systems</li>,
           <li>Python Programming</li>,
           <li>Adaptability</li>,
           <li>Problem Solving</li>,
           <li>Tenacity</li>,
-        ]}/>
+        ])}/>
       </ul>
 
       <h3>
@@ -38,13 +38,13 @@ const Page = () => (
         </Typewriter>
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={5500} lines={[
+        <TerminalLog speed={200} startDelay={5500} lines={React.Children.toArray([
           <li>CompTIA Security+</li>,
           <li>Associate of ISC2, SSCP Certified</li>,
           <li>CompTIA Network+</li>,
           <li>CompTIA A+</li>,
           <li>ITIL Foundation v4</li>,
-        ]}/>
+        ])}/>
       </ul>
 
       <h3>
@@ -53,13 +53,13 @@ const Page = () => (
         </Typewriter>
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={7500} lines={[
+        <TerminalLog speed={200} startDelay={7500} lines={React.Children.toArray([
           <li>
         <a href="./public/JakeResume.pdf" className="download-btn">
           Download Resume (PDF)
         </a>
           </li>,
-        ]}/>
+        ])}/>
       </ul>
       <br />
     </div>
