@@ -12,7 +12,7 @@ export default function BlogPage() {
                         </Link>
                     </h3>
                     <h3>
-                        <Link href="/blog/cyber-and-climbing">
+                        <Link href="/blog/climbing-and-cyber">
                             {'> An Unlikely Analogy for Threat Modeling: Rock Climbing?! (coming soon)'}
                         </Link>
                     </h3>

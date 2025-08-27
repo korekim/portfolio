@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-ing
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: app.local
+      http:
+        paths:
+          - path: /_next/
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-svc
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-svc
+                port:
+                  number: 80
