@@ -28,10 +28,10 @@ const Page = () => (
       </ul>
 
       <h3>
-        <Typewriter children={["> Certifications"]} startDelay={5000} speed={20} />
+        <Typewriter children={["> Certifications"]} startDelay={6000} speed={20} />
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={5500} lines={[
+        <TerminalLog speed={200} startDelay={6500} lines={[
           <li>CompTIA Security+</li>,
           <li>Associate of ISC2, SSCP Certified</li>,
           <li>CompTIA Network+</li>,
@@ -41,10 +41,10 @@ const Page = () => (
       </ul>
 
       <h3>
-        <Typewriter children={["> Resume:"]} startDelay={7000} speed={20} />
+        <Typewriter children={["> Resume:"]} startDelay={8000} speed={20} />
       </h3>
       <ul>
-        <TerminalLog speed={200} startDelay={7500} lines={[
+        <TerminalLog speed={200} startDelay={8500} lines={[
           <li>
         <a href="./public/JakeResume.pdf" className="download-btn">
           Download Resume (PDF)
