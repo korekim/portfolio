@@ -3,7 +3,7 @@ import React from "react";
 const Defcon33Page: React.FC = () => (
     <main>
         <div className="container">
-            <h1>My First Defcon!</h1>
+            <h2>My First Defcon!</h2>
             <div className="blogpost">
                 <p>
                     <i>This post is copied from my LinkedIn</i>
