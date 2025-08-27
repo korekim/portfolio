@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) port of my Github Portfolio bootstrapped
 
 It is currently deployed [here](https://jacob-kim-portfolio.vercel.app/)
 
+---
+
 How to run locally with MiniKube:
 
 First, make sure that you have Docker, MiniKube, and npm installed on your machine. You also need to clone the repo by running "git clone https://github.com/korekim/portfolio.git"
