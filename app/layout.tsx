@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import "./globals.css";
+import Typewriter from "../components/typewriter";
+
 
 export default function RootLayout({
   children,
@@ -12,7 +14,7 @@ export default function RootLayout({
       <body>
         <header>
           <h1 className="header-text">
-            <Link href="/">/users/Jacob_Kim/Cybersecurity_Portfolio</Link>
+            <Link href="/"><Typewriter text="/users/Jacob_Kim/Cybersecurity_Portfolio " /></Link>
           </h1>
           <nav className="header-nav">
             <div className="nav-buttons">

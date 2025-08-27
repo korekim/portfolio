@@ -201,3 +201,41 @@ body {
 .blog-post {
     color: #00ff00;
 }
+
+@keyframes type-reveal {
+  from { width: 0ch; }
+  to   { width: var(--ch, 40ch); }
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%,100% { opacity: 0; } /* stops visible at end */
+}
+
+.type-reveal {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  /* run typing; steps = characters */
+  animation: type-reveal var(--dur, 1600ms) steps(var(--steps, 40)) 200ms both;
+  position: relative;
+}
+.type-reveal::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 0;
+  width: 1ch;
+  height: 1em;            /* exact line height */
+  background: currentColor;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+/* When typing ends, remove the cursor */
+.type-reveal.done::after { display: none; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .type-reveal { animation: none; }
+  .type-reveal::after { display: none; }
+}

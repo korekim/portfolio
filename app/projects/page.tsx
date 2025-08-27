@@ -10,8 +10,11 @@ const projects = [
         title: "Github Portfolio",
         url: "https://github.com/korekim/portfolio",
         items: [
-            "Next.js integration is here!",
-            "Now deployed on Vercel",
+            "Now powered by Neext.js, currently deployed on Vercel",
+            <>
+                Run this page locally with MiniKube{" "}
+                <strong><a href="/blog/minikube">here</a></strong>
+            </>,
             "Coming Soon: Cloud migration with Docker containers + Kubernetes orchestration",
         ],
     },

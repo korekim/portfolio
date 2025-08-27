@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import TypeReveal from '@/components/typewriter';
+import TerminalLog from '@/components/terminallog';
 
 export default function AboutPage() {
     return (
