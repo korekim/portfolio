@@ -31,7 +31,7 @@ const Defcon33Page: React.FC = () => (
                     . That night, I attended the Bishop Fox party with Luke and met David Rushmer, MSc, Christopher Hansen, Peter Van Splunder, and James, whom I forgot to exchange contact information with. Everyone had such interesting jobs, and I had a blast listening to stories about engagments and showing off my shiny new Keysight hardware hacking case that I had earned in the CTF.
                     <br />
                     <br />
-                    I'm running out of characters, so I&apos;ll make the rest short. The next couple of days I attended talks about OT and ICS security by Mike Holcomb, and hung out with the group whilst meandering around the various villages.
+                    I&apos;m running out of characters, so I&apos;ll make the rest short. The next couple of days I attended talks about OT and ICS security by Mike Holcomb, and hung out with the group whilst meandering around the various villages.
                     <br />
                     <br />
                     All in all, it was an amazing event, and I can&apos;t wait to attend next year! Thanks to everyone who made it a great time, and I hope to see y&apos;all soon!
