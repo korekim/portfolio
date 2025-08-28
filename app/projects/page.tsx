@@ -1,6 +1,9 @@
+"use client";
+
 import Typewriter from "@/components/typewriter";
 import TerminalLog from "@/components/terminallog";
 import React from "react";
+import useFirstTime from "@/components/firsttimeroute";
 
 const projects = [
     {
@@ -12,7 +15,7 @@ const projects = [
         title: "Github Portfolio",
         url: "https://github.com/korekim/portfolio",
         items: [
-            "Now powered by Neext.js, currently deployed on Vercel",
+            "Now powered by Next.js, currently deployed on Vercel",
             <>
                 Run this page locally with MiniKube{" "}
                 <strong><a href="/blog/minikube">here</a></strong>
@@ -23,10 +26,40 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
+    const isFirstTime = useFirstTime();
+    
+    if (!isFirstTime) {
+        return (
+            <main>
+                <div className="projects">
+                    <h2>{">"} Projects</h2>
+                    <div className="project-container">
+                        <div className="project-card">
+                            {projects.map((project) => (
+                                <React.Fragment key={project.title}>
+                                    <h3>
+                                        <a href={project.url} target="_blank" rel="noopener noreferrer">
+                                            {">"} {project.title}
+                                        </a>
+                                    </h3>
+                                    <ul>
+                                        {project.items.map((item, idx) => (
+                                            <li key={idx}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </main>
+        );
+    }
+    
     return (
         <main>
             <div className="projects">
-                <h2><Typewriter>Projects</Typewriter></h2>
+                <h2><Typewriter speed={20}>{isFirstTime ? "> Projects" : "> Projects"}</Typewriter></h2>
                 <div className="project-container">
                     <div className="project-card">
                         {projects.map((project) => (
@@ -46,7 +79,7 @@ export default function ProjectsPage() {
                                         <TerminalLog
                                             key={idx}
                                             lines={React.Children.toArray(item)}
-                                            startDelay={((projects.findIndex(p => p.title === project.title) + 1) * 1000) + ((idx + 1) * 300) + 500}
+                                            startDelay={isFirstTime ? ((projects.findIndex(p => p.title === project.title) + 1) * 1000) + ((idx + 1) * 300) + 500 : 0}
                                             wrapWithLi={true}
                                         />
                                     ))}

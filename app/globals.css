@@ -12,6 +12,56 @@
 .header-text:hover {
     text-decoration: underline;
 }
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.nav-buttons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+
+.nav-buttons button {
+    background-color: var(--main-bg-color) !important;
+    color: var(--main-text-color) !important;
+    border: 1px solid var(--main-text-color) !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 12px !important;
+    margin-right: 0 !important;
+}
+
+.nav-buttons button:hover {
+    background-color: var(--main-text-color) !important;
+    color: var(--main-bg-color) !important;
+}
+
+.refresh-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+}
+
+.refresh-button svg {
+    transition: transform 0.3s ease;
+    width: 25px;
+    height: 25px;
+}
+
+.refresh-button:hover svg {
+    transform: rotate(180deg);
+}
 body {
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
