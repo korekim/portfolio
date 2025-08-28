@@ -9,8 +9,56 @@
     --link-hover-color: #39ff14;
 }
 
+.about {
+    position: relative;
+    min-height: calc(100vh - 150px);
+    margin-bottom: 150px;
+}
+
+.ascii-art {
+    font-family: monospace;
+    font-size: 3px;
+    line-height: 3px;
+    white-space: pre;
+    display: block;
+    color: var(--main-bg-color);
+    transform-origin: top left;
+    background-color: var(--main-text-color);
+    max-width: 600px;
+    max-height: calc(100vh - 200px);
+}
+
+.ascii-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    max-height: calc(100vh - 200px);
+    overflow: hidden;
+}
+
+.about-me {
+    position: relative;
+    margin-top: 2rem;
+    max-width: calc(100% - 620px);
+    z-index: 2;
+}
+
+.about-description {
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: 50px;
+}
+
 .header-text:hover {
     text-decoration: underline;
+}
+
+/* Ensure footer stays on top */
+footer {
+    position: relative;
+    z-index: 100;
+    background-color: var(--main-bg-color);
 }
 
 .header-content {

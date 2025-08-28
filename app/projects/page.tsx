@@ -32,7 +32,7 @@ export default function ProjectsPage() {
         return (
             <main>
                 <div className="projects">
-                    <h2>{">"} Projects</h2>
+                    <h2>Projects</h2>
                     <div className="project-container">
                         <div className="project-card">
                             {projects.map((project) => (
@@ -59,33 +59,58 @@ export default function ProjectsPage() {
     return (
         <main>
             <div className="projects">
-                <h2><Typewriter speed={20}>{isFirstTime ? "> Projects" : "> Projects"}</Typewriter></h2>
+                <h2><Typewriter speed={20}>{isFirstTime ? "Projects" : "> Projects"}</Typewriter></h2>
                 <div className="project-container">
                     <div className="project-card">
-                        {projects.map((project) => (
-                            <React.Fragment key={project.title}>
-                                <h3>
-                                    <a href={project.url} target="_blank" rel="noopener noreferrer">
-                                        <Typewriter
-                                            speed={20}
-                                            startDelay={(projects.findIndex(p => p.title === project.title) + 1) * 1000}
-                                        >
-                                            &gt; {project.title}
-                                        </Typewriter>
-                                    </a>
-                                </h3>
-                                <ul>
-                                    {project.items.map((item, idx) => (
-                                        <TerminalLog
-                                            key={idx}
-                                            lines={React.Children.toArray(item)}
-                                            startDelay={isFirstTime ? ((projects.findIndex(p => p.title === project.title) + 1) * 1000) + ((idx + 1) * 300) + 500 : 0}
-                                            wrapWithLi={true}
-                                        />
-                                    ))}
-                                </ul>
-                            </React.Fragment>
-                        ))}
+                        {projects.map((project, index) => {
+                            // Calculate title delay based on previous projects
+                            const getTitleDelay = () => {
+                                let delay = 1000; // Initial delay after "Projects"
+                                for (let i = 0; i < index; i++) {
+                                    // Add time for previous title and its items
+                                    delay += (projects[i].title.length * 20) + // Title typing time
+                                            (projects[i].items.length * 400) + // Time for terminal logs
+                                            400; // Buffer
+                                }
+                                return delay;
+                            };
+
+                            // Calculate terminal log delays to start after its title
+                            const getItemDelay = (itemIndex: number) => {
+                                const titleDelay = getTitleDelay();
+                                return titleDelay + 
+                                       (project.title.length * 20) + // Wait for title to finish
+                                       (itemIndex * 400) + // Stagger items
+                                       400; // Buffer
+                            };
+
+                            const titleDelay = getTitleDelay();
+
+                            return (
+                                <React.Fragment key={project.title}>
+                                    <h3>
+                                        <a href={project.url} target="_blank" rel="noopener noreferrer">
+                                            <Typewriter
+                                                speed={20}
+                                                startDelay={titleDelay}
+                                            >
+                                                &gt; {project.title}
+                                            </Typewriter>
+                                        </a>
+                                    </h3>
+                                    <ul>
+                                        {project.items.map((item, idx) => (
+                                            <TerminalLog
+                                                key={idx}
+                                                lines={React.Children.toArray(item)}
+                                                startDelay={isFirstTime ? getItemDelay(idx) : 0}
+                                                wrapWithLi={true}
+                                            />
+                                        ))}
+                                    </ul>
+                                </React.Fragment>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ type Props = {
   className?: string;
   cursor?: boolean;
   rerunKey?: string | number | undefined;
+  onComplete?: () => void;
 };
 
 export default function Typewriter({
@@ -19,6 +20,7 @@ export default function Typewriter({
   className = "",
   cursor = true,
   rerunKey,
+  onComplete,
 }: Props) {
   const nodes = useMemo(() => React.Children.toArray(children), [children]);
 
@@ -66,6 +68,7 @@ export default function Typewriter({
 
     if (idx >= nodes.length) {
       setDone(true);
+      onComplete?.();
       return;
     }
 
