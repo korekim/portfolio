@@ -90,13 +90,13 @@ const Page = () => {
                 {`> ${section.title}`}
               </Typewriter>
             </h3>
-            <ul>
+            <ul key={`${section.title}-animated-list`}>
               <TerminalLog 
                 speed={200} 
                 startDelay={(index + 2) * 2000 + 500} 
-                lines={React.Children.toArray(section.items.map((item, idx) => (
+                lines={section.items.map((item, idx) => (
                   <li key={`${section.title}-${idx}`}>{item}</li>
-                )))}
+                ))}
               />
             </ul>
           </React.Fragment>
