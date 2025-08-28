@@ -94,8 +94,8 @@ const Page = () => {
               <TerminalLog 
                 speed={200} 
                 startDelay={(index + 2) * 2000 + 500} 
-                lines={React.Children.toArray(section.items.map(item => (
-                  <li>{item}</li>
+                lines={React.Children.toArray(section.items.map((item, idx) => (
+                  <li key={`${section.title}-${idx}`}>{item}</li>
                 )))}
               />
             </ul>
