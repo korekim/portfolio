@@ -58,9 +58,9 @@ const Page = () => {
           {pageData.sections.map((section, index) => (
             <React.Fragment key={section.title}>
               <h3>{">"} {section.title}</h3>
-              <ul>
+              <ul key={`${section.title}-list`}>
                 {section.items.map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={`${section.title}-item-${idx}`}>{item}</li>
                 ))}
               </ul>
             </React.Fragment>
