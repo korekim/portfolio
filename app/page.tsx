@@ -12,7 +12,7 @@ const Page = () => (
       <p>
         <Typewriter 
           startDelay={1000}
-          speed={1}
+          speed={5}
         >
           {"I am a passionate cybersecurity student focused on developing skills in network security, penetration testing, and security analysis. Currently pursuing my degree in Cybersecurity, I am dedicated to understanding and defending against evolving digital threats."}
         </Typewriter>
