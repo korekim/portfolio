@@ -38,7 +38,7 @@ const pageData = {
     {
       title: "Resume",
       items: [
-        <a href="./public/JakeResume.pdf" className="download-btn">
+        <a key="resume-download" href="./public/JakeResume.pdf" className="download-btn">
           Download Resume (PDF)
         </a>
       ]
@@ -58,9 +58,9 @@ const Page = () => {
           {pageData.sections.map((section, index) => (
             <React.Fragment key={section.title}>
               <h3>{">"} {section.title}</h3>
-              <ul key={`${section.title}-list`}>
+              <ul>
                 {section.items.map((item, idx) => (
-                  <li key={`${section.title}-item-${idx}`}>{item}</li>
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </React.Fragment>
@@ -90,13 +90,13 @@ const Page = () => {
                 {`> ${section.title}`}
               </Typewriter>
             </h3>
-            <ul key={`${section.title}-animated-list`}>
+            <ul>
               <TerminalLog 
                 speed={200} 
                 startDelay={(index + 2) * 2000 + 500} 
-                lines={section.items.map((item, idx) => (
-                  <li key={`${section.title}-${idx}`}>{item}</li>
-                ))}
+                lines={React.Children.toArray(section.items.map(item => (
+                  <li>{item}</li>
+                )))}
               />
             </ul>
           </React.Fragment>
